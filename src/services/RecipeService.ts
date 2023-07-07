@@ -1,13 +1,16 @@
-import { Recipe } from "../types";
+import { Recipe } from "../types/types";
+import { BASE_URL_API } from "../utils/constant";
+import { formatRecipe } from "../utils/helper";
 
 export async function searchRecipes(searchTerm: string): Promise<Recipe[]> {
-    const response = await fetch(`https://themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
+    const response = await fetch(`${BASE_URL_API}/filter.php?i=${searchTerm}`);
     const data = await response.json();
     return data.meals;
 }
 
+
 export async function fetchRecipeById(id: string): Promise<Recipe> {
-    const response = await fetch(`https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const response = await fetch(`${BASE_URL_API}/lookup.php?i=${id}`);
     const data = await response.json();
-    return data.meals[0];
+    return formatRecipe(data.meals[0]);
 }

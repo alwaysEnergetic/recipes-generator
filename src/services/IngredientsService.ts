@@ -1,12 +1,13 @@
-import { Ingredient } from "../types";
+import { Ingredient } from "../types/types";
+import { BASE_URL_API, BASE_URL_IMAGE } from "../utils/constant";
 
 export async function fetchAllIngredients(): Promise<Ingredient[]> {
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+    const response = await fetch(`${BASE_URL_API}/list.php?i=list`);
     const data = await response.json();
     const meals = data.meals.map((meal: Ingredient) => {
         return {
             ...meal,
-            thumbnail: `https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`
+            thumbnail: `${BASE_URL_IMAGE}/${meal.strIngredient}-Small.png`
         }
     })
     if (data.meals) {
