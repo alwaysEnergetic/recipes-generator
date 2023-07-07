@@ -60,7 +60,7 @@ export default function RecipesList() {
             ></iframe>
           </div>
           {selectedRecipe && (
-            <textarea className="w-full mt-2 h-full">
+            <textarea className="w-full mt-2 min-h-[300px]">
               {selectedRecipe.strInstructions}
             </textarea>
           )}

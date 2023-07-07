@@ -16,8 +16,18 @@ export default function Modal(props: ModalProps) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-3/4 flex space-x-4 p-8 h-full m-auto bg-white shadow-2xl rounded-3xl"
+        className="w-full md:w-3/4 md:flex overflow-auto space-x-4 p-8 h-full m-auto bg-white shadow-2xl rounded-3xl"
       >
+        <div className="md:hidden flex justify-end">
+          <button
+            onClick={(e) => {
+              props.setShow(false);
+            }}
+            className="bg-black text-white rounded-lg p-2 px-4"
+          >
+            CLOSE
+          </button>
+        </div>
         {props.children}
       </div>
     </div>
