@@ -8,6 +8,11 @@ export default function RecipesList() {
     useContext(AppContext);
   const [show, setShow] = useState(false);
 
+  const getEmbedUrl = (url: string) => {
+    const videoId = url.split("v=")[1];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+
   return (
     <div className="w-4/5 px-4 border-l overflow-scroll">
       <Modal setShow={setShow} show={show}>
@@ -40,9 +45,16 @@ export default function RecipesList() {
               </div>
             ))}
         </div>
-        <div className="flex-1 border-4 border-dashed p-2">
+        <div className="flex-1  p-2 overflow-scroll">
+          <div>
+            <iframe
+              title="youtube"
+              className="w-full h-96"
+              src={getEmbedUrl(selectedRecipe?.strYoutube as any)}
+            ></iframe>
+          </div>
           {selectedRecipe && (
-            <textarea className="w-full h-full">
+            <textarea className="w-full mt-2 h-full">
               {selectedRecipe.strInstructions}
             </textarea>
           )}
