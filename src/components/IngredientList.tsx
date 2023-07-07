@@ -15,8 +15,8 @@ export default function IngredientList(props: any) {
   };
 
   return (
-    <div className="flex flex-col space-y-2">
-      <h1 className="text-2xl font-bold">Ingredients</h1>
+    <div className="flex flex-col space-y-2 h-full">
+      <h1 className="text-2xl font-bold mt-12 sm:mt-0">Ingredients</h1>
       <div>
         <input
           type="text"

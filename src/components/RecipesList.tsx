@@ -10,7 +10,7 @@ export default function RecipesList() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="w-4/5 px-4 border-l overflow-scroll">
+    <div className="w-full sm:w-4/5 sm:px-4 sm:border-l overflow-scroll">
       <Modal setShow={setShow} show={show}>
         <div className="border-4 border-dashed p-2">
           <div>
@@ -66,7 +66,7 @@ export default function RecipesList() {
           )}
         </div>
       </Modal>
-      <div className="justify-between mb-2 -ml-4 fixed bg-white px-4 border p-2 rounded-r-xl shadow-xl">
+      <div className="justify-between mb-2 -ml-4 top-0 sm:top-0 fixed w-full sm:w-64 bg-white px-4 border p-2 rounded-r-xl shadow-xl">
         <h2 className="text-gray-700 font-bold text-lg">
           Recipes with {selectedIngredient?.strIngredient}
         </h2>
@@ -74,7 +74,7 @@ export default function RecipesList() {
           Total Number of Recipes {recipes?.length}
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-8 mt-20">
+      <div className="sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 gap-8 mt-4 p-4">
         {recipes?.map((recipe) => (
           <RecipeCard
             onViewRecipe={(recipe) => {
