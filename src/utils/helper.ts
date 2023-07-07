@@ -16,3 +16,14 @@ export function formatRecipe(meal: Recipe) {
     }
     return meal;
 }
+
+
+
+export function getEmbeddedYoutubeUrl(url: string) {
+    if (url) {
+        const videoId = url.split("v=")[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+    } else {
+        return "";
+    }
+};

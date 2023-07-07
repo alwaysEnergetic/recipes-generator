@@ -2,16 +2,12 @@ import { useContext, useState } from "react";
 import AppContext from "../context/AppContext";
 import RecipeCard from "./RecipeCard";
 import Modal from "./Modal";
+import { getEmbeddedYoutubeUrl } from "../utils/helper";
 
 export default function RecipesList() {
   const { recipes, selectedIngredient, selectedRecipe, fetchRecipeById } =
     useContext(AppContext);
   const [show, setShow] = useState(false);
-
-  const getEmbedUrl = (url: string) => {
-    const videoId = url.split("v=")[1];
-    return `https://www.youtube.com/embed/${videoId}`;
-  };
 
   return (
     <div className="w-4/5 px-4 border-l overflow-scroll">
@@ -46,11 +42,21 @@ export default function RecipesList() {
             ))}
         </div>
         <div className="flex-1  p-2 overflow-scroll">
+          <div className="pb-2">
+            {selectedRecipe?.strTags.split(",").map((tag) => (
+              <span
+                key={tag}
+                className="bg-orange-100 px-2 py-1 rounded-lg text-sm text-gray-600 mr-2"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
           <div>
             <iframe
               title="youtube"
-              className="w-full h-96"
-              src={getEmbedUrl(selectedRecipe?.strYoutube as any)}
+              className="aspect-video w-full"
+              src={getEmbeddedYoutubeUrl(selectedRecipe?.strYoutube as any)}
             ></iframe>
           </div>
           {selectedRecipe && (
