@@ -43,14 +43,15 @@ export default function RecipesList() {
         </div>
         <div className="flex-1  p-2 overflow-scroll">
           <div className="pb-2">
-            {selectedRecipe?.strTags && selectedRecipe?.strTags.split(",").map((tag) => (
-              <span
-                key={tag}
-                className="bg-orange-100 px-2 py-1 rounded-lg text-sm text-gray-600 mr-2"
-              >
-                #{tag}
-              </span>
-            ))}
+            {selectedRecipe?.strTags &&
+              selectedRecipe?.strTags.split(",").map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-orange-100 px-2 py-1 rounded-lg text-sm text-gray-600 mr-2"
+                >
+                  #{tag}
+                </span>
+              ))}
           </div>
           <div>
             <iframe
@@ -66,7 +67,7 @@ export default function RecipesList() {
           )}
         </div>
       </Modal>
-      <div className="justify-between mb-2 -ml-4 top-0 sm:top-0 fixed w-full sm:w-64 bg-white px-4 border p-2 rounded-r-xl shadow-xl">
+      <div className="justify-between border-l-orange-600 border-l-2 mb-2 -ml-4 top-0 sm:top-0 fixed w-full sm:w-64 bg-white px-4 border p-2 rounded-r-xl shadow-xl">
         <h2 className="text-gray-700 font-bold text-lg">
           Recipes with {selectedIngredient?.strIngredient}
         </h2>
@@ -74,7 +75,16 @@ export default function RecipesList() {
           Total Number of Recipes {recipes?.length}
         </div>
       </div>
-      <div className="sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 gap-8 mt-4 p-4">
+      <div>
+        {recipes && recipes.length ? (
+          ""
+        ) : (
+          <div className="w-full h-screen grid">
+            <div className="m-auto text-gray-400">No Recipe Found</div>
+          </div>
+        )}
+      </div>
+      <div className="sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 gap-8 mt-2 sm:mt-16 p-4">
         {recipes?.map((recipe) => (
           <RecipeCard
             onViewRecipe={(recipe) => {
