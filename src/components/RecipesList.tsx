@@ -43,7 +43,7 @@ export default function RecipesList() {
         </div>
         <div className="flex-1  p-2 overflow-scroll">
           <div className="pb-2">
-            {selectedRecipe?.strTags.split(",").map((tag) => (
+            {selectedRecipe?.strTags && selectedRecipe?.strTags.split(",").map((tag) => (
               <span
                 key={tag}
                 className="bg-orange-100 px-2 py-1 rounded-lg text-sm text-gray-600 mr-2"
