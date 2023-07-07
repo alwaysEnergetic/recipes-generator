@@ -24,3 +24,5 @@ export default function useRecipe() {
         fetchRecipeById
     }
 }
+
+export type useRecipeType = ReturnType<typeof useRecipe>;

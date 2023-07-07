@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
 import "./App.css";
-import useIngredients from "./hooks/useIngredients";
+import useRecipe from "./hooks/useRecipe";
+import AppContext, { AppProvider } from "./hooks/AppContext";
+import { useContext } from "react";
 
 function IngredientMenu(props: any) {
-  const { filteredIngredients, filter } = useIngredients();
+  const { filteredIngredients, filterIngredients, searchRecipes } = useContext(AppContext);
 
   const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
-    filter(value);
+    filterIngredients!(value);
   };
 
   return (
@@ -22,9 +23,9 @@ function IngredientMenu(props: any) {
         />
       </div>
       <div className="flex-1 overflow-scroll cursor-pointer">
-        {filteredIngredients.map((ingredient) => (
+        {filteredIngredients!.map((ingredient) => (
           <div
-            // onClick={() => fetchRecipes(ingredient.strIngredient)}
+            onClick={() => searchRecipes!(ingredient.strIngredient)}
             className="p-2 rounded-lg px-2 space-x-4 border-b border-gray-100 hover:bg-blue-100 flex  items-center"
             key={ingredient.idIngredient}
           >
@@ -44,13 +45,17 @@ function IngredientMenu(props: any) {
 }
 
 function App() {
+  const { searchRecipes } = useRecipe();
+
   return (
-    <main className="flex space-x-2">
-      <div>
-        <IngredientMenu />
-      </div>
-      <div>RIGHT</div>
-    </main>
+    <AppProvider>
+      <main className="flex space-x-2">
+        <div>
+          <IngredientMenu />
+        </div>
+        <div>RIGHT</div>
+      </main>
+    </AppProvider>
   );
 }
 
