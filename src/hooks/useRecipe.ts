@@ -21,6 +21,7 @@ export default function useRecipe() {
         recipes,
         searchRecipes,
         selectedRecipe,
+        setSelectedRecipe,
         fetchRecipeById
     }
 }

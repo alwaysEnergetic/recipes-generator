@@ -5,6 +5,7 @@ import { fetchAllIngredients } from "../services/IngredientsService";
 export default function useIngredient() {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [filteredIngredients, setFilteredIngredients] = useState<Ingredient[]>([]);
+    const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
 
     useEffect(() => {
         async function init() {
@@ -23,7 +24,9 @@ export default function useIngredient() {
     return {
         ingredients,
         filteredIngredients,
-        filterIngredients
+        filterIngredients,
+        selectedIngredient, 
+        setSelectedIngredient
     }
 
 }
