@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import AppContext from "../hooks/AppContext";
+import AppContext from "../context/AppContext";
 
 export default function IngredientList(props: any) {
   const {

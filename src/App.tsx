@@ -1,8 +1,6 @@
 import "./App.css";
-import AppContext, { AppProvider } from "./hooks/AppContext";
+import { AppProvider } from "./context/AppContext";
 import IngredientList from "./components/IngredientList";
-import RecipeCard from "./components/RecipeCard";
-import { useContext } from "react";
 import RecipesList from "./components/RecipesList";
 
 function App() {
